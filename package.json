@@ -1,5 +1,5 @@
 {
-  "name": "warp-sdk",
+  "name": "warp-agent-sdk",
   "version": "0.1.0",
   "description": "The official TypeScript library for the Warp API API",
   "author": "Warp API <>",
