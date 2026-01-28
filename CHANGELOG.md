@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.0-alpha.1 (2026-01-28)
+
+Full Changelog: [v1.0.0-alpha.0...v1.0.0-alpha.1](https://github.com/warpdotdev/warp-sdk-typescript/compare/v1.0.0-alpha.0...v1.0.0-alpha.1)
+
+### Features
+
+* **api:** add artifacts, worker_host, and new source types ([434a92f](https://github.com/warpdotdev/warp-sdk-typescript/commit/434a92fd401576e6dde3002a5cab3f62ba0cdc43))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([2589365](https://github.com/warpdotdev/warp-sdk-typescript/commit/2589365a42e2080e3b3b7cd2c938caed5b03f67b))
+
 ## 1.0.0-alpha.0 (2026-01-21)
 
 Full Changelog: [v0.3.0...v1.0.0-alpha.0](https://github.com/warpdotdev/warp-sdk-typescript/compare/v0.3.0...v1.0.0-alpha.0)
