@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0-alpha.2 (2026-02-04)
+
+Full Changelog: [v1.0.0-alpha.1...v1.0.0-alpha.2](https://github.com/warpdotdev/warp-sdk-typescript/compare/v1.0.0-alpha.1...v1.0.0-alpha.2)
+
+### Features
+
+* **api:** add addnl filters to runs endpoint ([b9e8309](https://github.com/warpdotdev/warp-sdk-typescript/commit/b9e8309221253b555c3d280c0bee086b578fcc23))
+* **api:** add models for agent skill, user profile ([d7275a8](https://github.com/warpdotdev/warp-sdk-typescript/commit/d7275a8224054c4f81a8aaeebfbe5c1dcfc4e3fd))
+
 ## 1.0.0-alpha.1 (2026-02-02)
 
 Full Changelog: [v1.0.0-alpha.0...v1.0.0-alpha.1](https://github.com/warpdotdev/warp-sdk-typescript/compare/v1.0.0-alpha.0...v1.0.0-alpha.1)
