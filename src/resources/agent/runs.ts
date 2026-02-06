@@ -209,6 +209,8 @@ export interface RunItem {
    * - SCHEDULED_AGENT: Created by a scheduled agent
    * - WEB_APP: Created from the Warp web app
    * - GITHUB_ACTION: Created from a GitHub action
+   * - CLOUD_MODE: Created from a Cloud Mode
+   * - CLI: Created from the CLI
    */
   source?: RunSourceType;
 
@@ -275,6 +277,8 @@ export namespace RunItem {
  * - SCHEDULED_AGENT: Created by a scheduled agent
  * - WEB_APP: Created from the Warp web app
  * - GITHUB_ACTION: Created from a GitHub action
+ * - CLOUD_MODE: Created from a Cloud Mode
+ * - CLI: Created from the CLI
  */
 export type RunSourceType =
   | 'LINEAR'
@@ -283,7 +287,9 @@ export type RunSourceType =
   | 'LOCAL'
   | 'SCHEDULED_AGENT'
   | 'WEB_APP'
-  | 'GITHUB_ACTION';
+  | 'GITHUB_ACTION'
+  | 'CLOUD_MODE'
+  | 'CLI';
 
 /**
  * Current state of the run:
