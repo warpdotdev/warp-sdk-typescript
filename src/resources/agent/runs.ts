@@ -157,9 +157,15 @@ export interface RunItem {
   updated_at: string;
 
   /**
-   * Configuration for an ambient agent run
+   * Configuration for an cloud agent run
    */
   agent_config?: AgentAPI.AmbientAgentConfig;
+
+  /**
+   * Information about the agent skill used for the run. Either full_path or
+   * bundled_skill_id will be set, but not both.
+   */
+  agent_skill?: RunItem.AgentSkill;
 
   /**
    * Artifacts created during the run (plans, pull requests, etc.)
@@ -188,6 +194,11 @@ export interface RunItem {
    * scheduled runs)
    */
   schedule?: RunItem.Schedule;
+
+  /**
+   * Ownership scope for a resource (team or personal)
+   */
+  scope?: RunItem.Scope;
 
   /**
    * UUID of the shared session (if available)
@@ -224,6 +235,32 @@ export interface RunItem {
 
 export namespace RunItem {
   /**
+   * Information about the agent skill used for the run. Either full_path or
+   * bundled_skill_id will be set, but not both.
+   */
+  export interface AgentSkill {
+    /**
+     * Unique identifier for bundled skills
+     */
+    bundled_skill_id?: string;
+
+    /**
+     * Description of the skill
+     */
+    description?: string;
+
+    /**
+     * Path to the SKILL.md file (for file-based skills)
+     */
+    full_path?: string;
+
+    /**
+     * Human-readable name of the skill
+     */
+    name?: string;
+  }
+
+  /**
    * Resource usage information for the run
    */
   export interface RequestUsage {
@@ -257,6 +294,21 @@ export namespace RunItem {
      * Name of the schedule at the time the run was created
      */
     schedule_name: string;
+  }
+
+  /**
+   * Ownership scope for a resource (team or personal)
+   */
+  export interface Scope {
+    /**
+     * Type of ownership ("User" for personal, "Team" for team-owned)
+     */
+    type: 'User' | 'Team';
+
+    /**
+     * UID of the owning user or team
+     */
+    uid?: string;
   }
 
   export interface StatusMessage {
@@ -331,9 +383,9 @@ export type RunCancelResponse = string;
 
 export interface RunListParams {
   /**
-   * Filter by agent config name
+   * Filter runs by artifact type (PLAN or PULL_REQUEST)
    */
-  config_name?: string;
+  artifact_type?: 'PLAN' | 'PULL_REQUEST';
 
   /**
    * Filter runs created after this timestamp (RFC3339 format)
@@ -371,9 +423,25 @@ export interface RunListParams {
   model_id?: string;
 
   /**
+   * Filter by agent config name
+   */
+  name?: string;
+
+  /**
+   * Fuzzy search query across run title, prompt, and skill_spec
+   */
+  q?: string;
+
+  /**
    * Filter runs by the scheduled agent ID that created them
    */
   schedule_id?: string;
+
+  /**
+   * Filter runs by skill spec (e.g., "owner/repo:path/to/SKILL.md"). Alias for
+   * skill_spec.
+   */
+  skill?: string;
 
   /**
    * Filter runs by skill spec (e.g., "owner/repo:path/to/SKILL.md")

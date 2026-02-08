@@ -45,8 +45,8 @@ export class Agent extends APIResource {
   }
 
   /**
-   * Spawn an ambient agent with a prompt and optional configuration. The agent will
-   * be queued for execution and assigned a unique run ID.
+   * Spawn an cloud agent with a prompt and optional configuration. The agent will be
+   * queued for execution and assigned a unique run ID.
    *
    * @example
    * ```ts
@@ -96,6 +96,11 @@ export namespace AgentSkill {
     environments: Array<Variant.Environment>;
 
     source: Variant.Source;
+
+    /**
+     * Timestamp of the last time this skill was run (RFC3339)
+     */
+    last_run_timestamp?: string | null;
   }
 
   export namespace Variant {
@@ -131,7 +136,7 @@ export namespace AgentSkill {
 }
 
 /**
- * Configuration for an ambient agent run
+ * Configuration for an cloud agent run
  */
 export interface AmbientAgentConfig {
   /**
@@ -307,29 +312,72 @@ export interface AgentRunResponse {
    * - CANCELLED: Run was cancelled by user
    */
   state: RunsAPI.RunState;
+
+  /**
+   * @deprecated Use run_id instead.
+   */
+  task_id: string;
 }
 
 export interface AgentListParams {
+  /**
+   * When true, clears the agent list cache before fetching. Use this to force a
+   * refresh of the available agents.
+   */
+  refresh?: boolean;
+
   /**
    * Optional repository specification to list agents from (format: "owner/repo"). If
    * not provided, lists agents from all accessible environments.
    */
   repo?: string;
+
+  /**
+   * Sort order for the returned agents.
+   *
+   * - "name": Sort alphabetically by name (default)
+   * - "last_run": Sort by most recently used
+   */
+  sort_by?: 'name' | 'last_run';
 }
 
 export interface AgentRunParams {
   /**
-   * The prompt/instruction for the agent to execute
-   */
-  prompt: string;
-
-  /**
-   * Configuration for an ambient agent run
+   * Configuration for an cloud agent run
    */
   config?: AmbientAgentConfig;
 
   /**
-   * Make the run visible to all team members, not only the calling user
+   * Optional conversation ID to continue an existing conversation. If provided, the
+   * agent will continue from where the previous run left off.
+   */
+  conversation_id?: string;
+
+  /**
+   * Optional images to include with the prompt (max 5). Images are uploaded to cloud
+   * storage and made available to the agent.
+   */
+  images?: Array<AgentRunParams.Image>;
+
+  /**
+   * The prompt/instruction for the agent to execute. Required unless a skill is
+   * specified via the skill field or config.skill_spec.
+   */
+  prompt?: string;
+
+  /**
+   * Skill specification to use as the base prompt for the agent. Supported formats:
+   *
+   * - "repo:skill_name" - Simple name in specific repo
+   * - "repo:skill_path" - Full path in specific repo
+   * - "org/repo:skill_name" - Simple name with org and repo
+   * - "org/repo:skill_path" - Full path with org and repo When provided, this takes
+   *   precedence over config.skill_spec.
+   */
+  skill?: string;
+
+  /**
+   * Whether to create a team-owned run. Defaults to true for users on a single team.
    */
   team?: boolean;
 
@@ -337,6 +385,24 @@ export interface AgentRunParams {
    * Custom title for the run (auto-generated if not provided)
    */
   title?: string;
+}
+
+export namespace AgentRunParams {
+  /**
+   * A base64-encoded image to include with the prompt
+   */
+  export interface Image {
+    /**
+     * Base64-encoded image data
+     */
+    data: string;
+
+    /**
+     * MIME type of the image. Supported types: image/jpeg, image/png, image/gif,
+     * image/webp
+     */
+    mime_type: 'image/jpeg' | 'image/png' | 'image/gif' | 'image/webp';
+  }
 }
 
 Agent.Runs = Runs;
