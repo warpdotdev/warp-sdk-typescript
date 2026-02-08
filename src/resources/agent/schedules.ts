@@ -158,7 +158,7 @@ export interface ScheduledAgentItem {
   updated_at: string;
 
   /**
-   * Configuration for an ambient agent run
+   * Configuration for an cloud agent run
    */
   agent_config?: AgentAPI.AmbientAgentConfig;
 
@@ -179,6 +179,11 @@ export interface ScheduledAgentItem {
    */
   last_spawn_error?: string | null;
 
+  /**
+   * Ownership scope for a resource (team or personal)
+   */
+  scope?: ScheduledAgentItem.Scope;
+
   updated_by?: AgentAPI.UserProfile;
 }
 
@@ -196,6 +201,21 @@ export namespace ScheduledAgentItem {
      * Timestamp of the next scheduled run (RFC3339)
      */
     next_run?: string | null;
+  }
+
+  /**
+   * Ownership scope for a resource (team or personal)
+   */
+  export interface Scope {
+    /**
+     * Type of ownership ("User" for personal, "Team" for team-owned)
+     */
+    type: 'User' | 'Team';
+
+    /**
+     * UID of the owning user or team
+     */
+    uid?: string;
   }
 }
 
@@ -231,7 +251,7 @@ export interface ScheduleCreateParams {
   prompt: string;
 
   /**
-   * Configuration for an ambient agent run
+   * Configuration for an cloud agent run
    */
   agent_config?: AgentAPI.AmbientAgentConfig;
 
@@ -269,7 +289,7 @@ export interface ScheduleUpdateParams {
   prompt: string;
 
   /**
-   * Configuration for an ambient agent run
+   * Configuration for an cloud agent run
    */
   agent_config?: AgentAPI.AmbientAgentConfig;
 }

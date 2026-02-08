@@ -38,7 +38,7 @@ describe('resource runs', () => {
     await expect(
       client.agent.runs.list(
         {
-          config_name: 'config_name',
+          artifact_type: 'PLAN',
           created_after: '2019-12-27T18:11:19.117Z',
           created_before: '2019-12-27T18:11:19.117Z',
           creator: 'creator',
@@ -46,7 +46,10 @@ describe('resource runs', () => {
           environment_id: 'environment_id',
           limit: 1,
           model_id: 'model_id',
+          name: 'name',
+          q: 'q',
           schedule_id: 'schedule_id',
+          skill: 'skill',
           skill_spec: 'skill_spec',
           source: 'LINEAR',
           state: ['QUEUED'],
