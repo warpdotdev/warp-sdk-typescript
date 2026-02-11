@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0-alpha.9 (2026-02-11)
+
+Full Changelog: [v1.0.0-alpha.8...v1.0.0-alpha.9](https://github.com/warpdotdev/oz-sdk-typescript/compare/v1.0.0-alpha.8...v1.0.0-alpha.9)
+
+### Chores
+
+* **internal:** avoid type checking errors with ts-reset ([be80828](https://github.com/warpdotdev/oz-sdk-typescript/commit/be80828361a15d93dafc3063e90f5c1723e312f4))
+
 ## 1.0.0-alpha.8 (2026-02-08)
 
 Full Changelog: [v1.0.0-alpha.7...v1.0.0-alpha.8](https://github.com/warpdotdev/oz-sdk-typescript/compare/v1.0.0-alpha.7...v1.0.0-alpha.8)
