@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.0-alpha.7](https://github.com/warpdotdev/oz-sdk-typescript/compare/v1.4.0-alpha.6...v1.4.0-alpha.7) (2026-08-25)
+
+
+### Features
+
+* **api:** Add token totals and inference cost breakdown to REST RequestUsage ([04783b3](https://github.com/warpdotdev/oz-sdk-typescript/commit/04783b33eaf119ef95b7b07ac54c6fc8e8c1e974))
+* **api:** REMOTE-2995: Audit OpenAPI descriptions for length, style, and Oz-&gt;Warp naming ([0bd3ed6](https://github.com/warpdotdev/oz-sdk-typescript/commit/0bd3ed6cc2363639891367cb9a393d12388c7543))
+* **factory:** dispatch runs to a factory by UID and search factory listings ([1083848](https://github.com/warpdotdev/oz-sdk-typescript/commit/1083848dac8eab7a52d33b308ed96178a5fc1b9a))
+
 ## [1.4.0-alpha.6](https://github.com/warpdotdev/oz-sdk-typescript/compare/v1.4.0-alpha.5...v1.4.0-alpha.6) (2026-08-17)
 
 
